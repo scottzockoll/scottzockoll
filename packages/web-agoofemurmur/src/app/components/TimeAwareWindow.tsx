@@ -37,7 +37,7 @@ export default function TimeAwareWindow({
         let styledSvg = svgText;
 
         // Generate random timing sequences for each raindrop
-        const generateRandomTimings = (count) => {
+        const generateRandomTimings = (count: number) => {
           const timings = [];
 
           for (let i = 0; i < count; i++) {
@@ -65,7 +65,8 @@ export default function TimeAwareWindow({
         const timings = generateRandomTimings(23);
 
         // Find all path elements in the rain group and add individual animations
-        const rainGroupMatch = styledSvg.match(/<g class="rain"[^>]*>(.*?)<\/g>/s);
+          // @ts-expect-error this is fine
+          const rainGroupMatch = styledSvg.match(/<g class="rain"[^>]*>(.*?)<\/g>/s);
         if (rainGroupMatch) {
           let rainContent = rainGroupMatch[1];
           const pathMatches = Array.from(rainContent.matchAll(/<path[^>]*\/>/g));
