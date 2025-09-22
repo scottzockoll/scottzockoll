@@ -29,13 +29,14 @@
 
 .window {
   position: absolute;
-  left: -10vw;
-  top: 10vh;
-  width: min(675px, 45vw);
-  height: min(844px, 57vh);
+  left: calc(5vw - 100px);
+  top: -300px;
+  width: min(80px, 6vw);
+  height: min(100px, 7vh);
   margin: 0;
   padding: 0;
   display: block;
+  z-index: 10;
 }
 
 .goofe {

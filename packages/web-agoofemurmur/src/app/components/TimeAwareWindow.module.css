@@ -1,0 +1,105 @@
+/* Window container styles */
+.windowContainer {
+  position: relative;
+  display: inline-block;
+}
+
+/* Rain animation styles - applied to SVG when showRain is true */
+.showRain .rain {
+  display: block !important;
+  outline: 2px solid red;
+}
+
+.showRain .rain path {
+  animation: rainFall 0.8s linear infinite;
+  stroke: #B0B0B0 !important;
+  stroke-width: 1 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 0.8 !important;
+  fill: none !important;
+}
+
+/* Individual drop animations with staggered delays */
+.showRain .rain path:nth-child(1) { animation-delay: 0s; animation-duration: 0.8s; }
+.showRain .rain path:nth-child(2) { animation-delay: 0.1s; animation-duration: 0.7s; }
+.showRain .rain path:nth-child(3) { animation-delay: 0.2s; animation-duration: 0.9s; }
+.showRain .rain path:nth-child(4) { animation-delay: 0.3s; animation-duration: 0.8s; }
+.showRain .rain path:nth-child(5) { animation-delay: 0.4s; animation-duration: 0.9s; }
+.showRain .rain path:nth-child(6) { animation-delay: 0.5s; animation-duration: 0.7s; }
+.showRain .rain path:nth-child(7) { animation-delay: 0.6s; animation-duration: 1.0s; }
+.showRain .rain path:nth-child(8) { animation-delay: 0.7s; animation-duration: 0.6s; }
+.showRain .rain path:nth-child(9) { animation-delay: 0.8s; animation-duration: 0.8s; }
+.showRain .rain path:nth-child(10) { animation-delay: 0.9s; animation-duration: 1.0s; }
+.showRain .rain path:nth-child(11) { animation-delay: 1.0s; animation-duration: 0.8s; }
+.showRain .rain path:nth-child(12) { animation-delay: 1.1s; animation-duration: 0.9s; }
+.showRain .rain path:nth-child(13) { animation-delay: 1.2s; animation-duration: 0.7s; }
+.showRain .rain path:nth-child(14) { animation-delay: 1.3s; animation-duration: 0.9s; }
+.showRain .rain path:nth-child(15) { animation-delay: 1.4s; animation-duration: 1.0s; }
+.showRain .rain path:nth-child(16) { animation-delay: 1.5s; animation-duration: 0.7s; }
+.showRain .rain path:nth-child(17) { animation-delay: 1.6s; animation-duration: 0.8s; }
+.showRain .rain path:nth-child(18) { animation-delay: 1.7s; animation-duration: 1.0s; }
+.showRain .rain path:nth-child(19) { animation-delay: 1.8s; animation-duration: 0.8s; }
+.showRain .rain path:nth-child(20) { animation-delay: 1.9s; animation-duration: 0.9s; }
+.showRain .rain path:nth-child(21) { animation-delay: 2.0s; animation-duration: 0.7s; }
+.showRain .rain path:nth-child(22) { animation-delay: 2.1s; animation-duration: 1.0s; }
+.showRain .rain path:nth-child(23) { animation-delay: 2.2s; animation-duration: 0.8s; }
+
+/* Rain animation falling at 30 degree angle */
+@keyframes rainFall {
+  0% {
+    transform: translate(0px, 0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(17px, 30px);
+    opacity: 0;
+  }
+}
+
+/* Show rain for debugging */
+.rain {
+  display: block !important;
+  outline: 2px solid red;
+}
+
+.rain path {
+  animation: rainFall 0.8s linear infinite;
+  stroke: #B0B0B0 !important;
+  stroke-width: 1 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 0.8 !important;
+  fill: none !important;
+}
+
+/* Staggered timing for all rain drops */
+.rain path:nth-child(1) { animation-delay: 0s; animation-duration: 0.8s; }
+.rain path:nth-child(2) { animation-delay: 0.1s; animation-duration: 0.7s; }
+.rain path:nth-child(3) { animation-delay: 0.2s; animation-duration: 0.9s; }
+.rain path:nth-child(4) { animation-delay: 0.3s; animation-duration: 0.8s; }
+.rain path:nth-child(5) { animation-delay: 0.4s; animation-duration: 0.9s; }
+.rain path:nth-child(6) { animation-delay: 0.5s; animation-duration: 0.7s; }
+.rain path:nth-child(7) { animation-delay: 0.6s; animation-duration: 1.0s; }
+.rain path:nth-child(8) { animation-delay: 0.7s; animation-duration: 0.6s; }
+.rain path:nth-child(9) { animation-delay: 0.8s; animation-duration: 0.8s; }
+.rain path:nth-child(10) { animation-delay: 0.9s; animation-duration: 1.0s; }
+.rain path:nth-child(11) { animation-delay: 1.0s; animation-duration: 0.8s; }
+.rain path:nth-child(12) { animation-delay: 1.1s; animation-duration: 0.9s; }
+.rain path:nth-child(13) { animation-delay: 1.2s; animation-duration: 0.7s; }
+.rain path:nth-child(14) { animation-delay: 1.3s; animation-duration: 0.9s; }
+.rain path:nth-child(15) { animation-delay: 1.4s; animation-duration: 1.0s; }
+.rain path:nth-child(16) { animation-delay: 1.5s; animation-duration: 0.7s; }
+.rain path:nth-child(17) { animation-delay: 1.6s; animation-duration: 0.8s; }
+.rain path:nth-child(18) { animation-delay: 1.7s; animation-duration: 1.0s; }
+.rain path:nth-child(19) { animation-delay: 1.8s; animation-duration: 0.8s; }
+.rain path:nth-child(20) { animation-delay: 1.9s; animation-duration: 0.9s; }
+.rain path:nth-child(21) { animation-delay: 2.0s; animation-duration: 0.7s; }
+.rain path:nth-child(22) { animation-delay: 2.1s; animation-duration: 1.0s; }
+.rain path:nth-child(23) { animation-delay: 2.2s; animation-duration: 0.8s; }
