@@ -5,6 +5,10 @@
 
 declare module "sst" {
   export interface Resource {
+    "AGoofeMurmur": {
+      "type": "sst.aws.Nextjs"
+      "url": string
+    }
     "MainSite": {
       "type": "sst.aws.Nextjs"
       "url": string
