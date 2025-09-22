@@ -11,6 +11,7 @@ interface TimeAwareGoofeProps {
   className?: string;
   animate?: boolean;
   animationSpeed?: number;
+  forceSleepy?: boolean;
 }
 
 export default function TimeAwareGoofe({
@@ -19,17 +20,22 @@ export default function TimeAwareGoofe({
   alt = "Goofe in bed",
   className,
   animate = false,
-  animationSpeed = 6
+  animationSpeed = 6,
+  forceSleepy = false
 }: TimeAwareGoofeProps) {
   const [isSleepy, setIsSleepy] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const now = new Date();
-    const hour = now.getHours();
-    setIsSleepy(hour < 8);
-  }, []);
+    if (forceSleepy) {
+      setIsSleepy(true);
+    } else {
+      const now = new Date();
+      const hour = now.getHours();
+      setIsSleepy(hour < 8);
+    }
+  }, [forceSleepy]);
 
   const animationStyle = animate
     ? { animationDuration: `${animationSpeed}s` }

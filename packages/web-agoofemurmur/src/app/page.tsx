@@ -8,7 +8,7 @@ export default function Home() {
     <div className={styles.page}>
       <div className={styles.scene}>
         <Window width={675} height={844} className={styles.window} animate animationSpeed={10} />
-        <TimeAwareGoofe width={1200} height={900} className={styles.goofe} animate animationSpeed={6} />
+        <TimeAwareGoofe width={1200} height={900} className={styles.goofe} animate animationSpeed={6} forceSleepy={false} />
       </div>
     </div>
   );
