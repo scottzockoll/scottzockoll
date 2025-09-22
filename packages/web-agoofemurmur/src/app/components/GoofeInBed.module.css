@@ -1,13 +1,27 @@
 @keyframes rock {
   0%, 100% {
-    transform: rotate(-0.5deg);
+    transform: rotate(-1.5deg);
   }
   50% {
-    transform: rotate(0.5deg);
+    transform: rotate(1.5deg);
+  }
+}
+
+@keyframes rock-reverse {
+  0%, 100% {
+    transform: rotate(1.5deg);
+  }
+  50% {
+    transform: rotate(-1.5deg);
   }
 }
 
 .rocking {
-  animation: rock 6s ease-in-out infinite;
+  animation: rock ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.rockingReverse {
+  animation: rock-reverse ease-in-out infinite;
   transform-origin: center bottom;
 }

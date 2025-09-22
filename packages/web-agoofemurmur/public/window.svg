@@ -1,1 +1,10 @@
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="16.5984 26.4058 202.896 352.469" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs/>
+<g id="Layer-10">
+<path d="M22.43 209.187C18.2402 215.167 30.0031 227.616 33.2434 234.096C40.9956 249.601 48.7833 265.753 54.87 281.984C63.9895 306.303 75.5785 329.173 86.5377 352.657C89.4512 358.9 91.9515 365.415 95.0339 371.58C95.0802 371.673 96.4014 374.273 96.9648 373.897C100.223 371.725 103.233 356.907 105.075 353.429C113.618 337.292 122.661 321.397 131.722 305.541C146.413 279.833 158.398 252.375 173.817 227.145C184.213 210.133 209.75 182.275 214.367 163.809C216.3 156.077 202.685 126.544 198.919 119.011C187.922 97.0171 175.622 75.0576 166.479 52.2004C165.581 49.9541 159.256 31.3461 156.438 31.3461C156.165 31.3461 155.343 35.0392 155.28 35.208C154.086 38.3923 152.123 41.2946 150.259 44.0904C142.005 56.4718 132.875 68.3099 124.771 80.7785C103.771 113.086 77.0267 144.47 52.1667 173.85C45.9534 181.193 27.4812 201.977 22.43 209.187Z" fill="#c5eaff" fill-opacity="0.346272" fill-rule="nonzero" opacity="1" stroke="#bebebe" stroke-linecap="round" stroke-linejoin="round" stroke-width="9.88052"/>
+<path d="M89.241 134.845C108.987 174.336 138.721 209.476 158.369 248.771" fill="#c5eaff" fill-opacity="0.346272" fill-rule="nonzero" opacity="1" stroke="#bebebe" stroke-linecap="round" stroke-linejoin="round" stroke-width="9.88052"/>
+</g>
+</svg>

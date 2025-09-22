@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./GoofeInBed.module.css";
 
-interface GoofeInBedProps {
+interface WindowProps {
   width?: number;
   height?: number;
   alt?: string;
@@ -10,26 +10,26 @@ interface GoofeInBedProps {
   animationSpeed?: number;
 }
 
-export default function GoofeInBed({
-  width = 300,
-  height = 300,
-  alt = "Goofe in bed",
+export default function Window({
+  width = 200,
+  height = 200,
+  alt = "Window",
   className,
   animate = false,
-  animationSpeed = 6
-}: GoofeInBedProps) {
+  animationSpeed = 10
+}: WindowProps) {
   const animationStyle = animate
     ? { animationDuration: `${animationSpeed}s` }
     : {};
 
   const imageClassName = [
     className,
-    animate ? styles.rocking : ""
+    animate ? styles.rockingReverse : ""
   ].filter(Boolean).join(" ");
 
   return (
     <Image
-      src="/goofe-in-bed.svg"
+      src="/window.svg"
       alt={alt}
       width={width}
       height={height}
