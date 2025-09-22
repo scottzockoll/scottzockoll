@@ -5,9 +5,9 @@ export const mainSite = new sst.aws.Nextjs("MainSite", {
     }
 });
 
-// export const blogSite = new sst.aws.Nextjs("BlogSite", {
-//     path: "./packages/web-blog",
-//     domain: {
-//         name: "blog.scottzockoll.com"
-//     }
-// });
+export const aGoofeMurmurSite = new sst.aws.Nextjs("AGoofeMurmur", {
+    path: "./packages/web-agoofemurmur",
+    domain: {
+        name: "goofe.scottzockoll.com"
+    }
+});
