@@ -74,7 +74,7 @@ export default function RainAudio({
       preload="none"
       style={{ display: 'none' }}
     >
-      <source src="/rain_2s_crossfade.wav" type="audio/wav" />
+      <source src="/rain_2s_crossfade.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   );
