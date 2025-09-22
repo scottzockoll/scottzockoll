@@ -79,3 +79,18 @@ In the template, we have an `api.ts`, and `storage.ts`. These export the created
 ---
 
 **Join our community** [Discord](https://sst.dev/discord) | [YouTube](https://www.youtube.com/c/sst-dev) | [X.com](https://x.com/SST_dev)
+
+
+**My instructions**:
+
+create a new web package: 
+- cd into packages and run `npx create-next-app@latest <name of package>`
+- cd into that package
+- run npm install
+
+if you get errors deploying:
+- cd packages/web-<package name>
+- rm -rf .next .open-next
+- npm run build
+- cd ../.. (root)
+- npx sst deploy
