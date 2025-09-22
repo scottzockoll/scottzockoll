@@ -5,6 +5,10 @@
 
 declare module "sst" {
   export interface Resource {
+    "MainSite": {
+      "type": "sst.aws.Nextjs"
+      "url": string
+    }
     "MyApi": {
       "name": string
       "type": "sst.aws.Function"
