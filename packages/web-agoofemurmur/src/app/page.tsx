@@ -1,13 +1,13 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import TimeAwareGoofe from "./components/TimeAwareGoofe";
-import Window from "./components/Window";
+import TimeAwareWindow from "./components/TimeAwareWindow";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <div className={styles.scene}>
-        <Window width={675} height={844} className={styles.window} animate animationSpeed={10} />
+        <TimeAwareWindow width={675} height={844} className={styles.window} showRain={false} />
         <TimeAwareGoofe width={1200} height={900} className={styles.goofe} animate animationSpeed={6} forceSleepy={false} />
       </div>
     </div>
