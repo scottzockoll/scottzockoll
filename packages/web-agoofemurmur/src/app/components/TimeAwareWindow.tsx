@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import styles from "./TimeAwareWindow.module.css";
 
 interface TimeAwareWindowProps {
@@ -11,7 +11,7 @@ interface TimeAwareWindowProps {
   showRain?: boolean;
 }
 
-export default function TimeAwareWindow({
+function TimeAwareWindow({
   width = 200,
   height = 200,
   alt = "Window",
@@ -98,15 +98,21 @@ export default function TimeAwareWindow({
           styledSvg = styledSvg.replace(rainGroupMatch[0], `<g class="rain">${rainContent}</g>`);
         }
 
-        // Add CSS to make rain invisible by default
-        const initialStyles = `
+        // Add CSS to control rain visibility - hide rain group by default
+        const rainStyles = `
           <style>
+            .rain {
+              display: none;
+            }
+            .rain.active {
+              display: block;
+            }
             .rain path {
               opacity: 0;
             }
           </style>
         `;
-        styledSvg = styledSvg.replace('<svg', initialStyles + '<svg');
+        styledSvg = styledSvg.replace('<svg', rainStyles + '<svg');
 
         setSvgContent(styledSvg);
       })
@@ -131,6 +137,24 @@ export default function TimeAwareWindow({
       }, 100);
     }
   }, [svgContent]);
+
+  // Control rain animation based on showRain prop
+  useEffect(() => {
+    if (svgContent) {
+      const rainElements = document.querySelectorAll('.rain');
+      rainElements.forEach(element => {
+        const isCurrentlyActive = element.classList.contains('active');
+
+        if (showRain && !isCurrentlyActive) {
+          element.classList.add('active');
+          console.log("Rain animation started");
+        } else if (!showRain && isCurrentlyActive) {
+          element.classList.remove('active');
+          console.log("Rain animation stopped");
+        }
+      });
+    }
+  }, [showRain, svgContent]);
 
   // Show loading during SSR and while fetching SVG
   if (!mounted || !svgContent) {
@@ -163,3 +187,5 @@ export default function TimeAwareWindow({
     </div>
   );
 }
+
+export default memo(TimeAwareWindow);
