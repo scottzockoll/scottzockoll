@@ -1,0 +1,13 @@
+@keyframes rock {
+  0%, 100% {
+    transform: rotate(-0.5deg);
+  }
+  50% {
+    transform: rotate(0.5deg);
+  }
+}
+
+.rocking {
+  animation: rock 6s ease-in-out infinite;
+  transform-origin: center bottom;
+}
