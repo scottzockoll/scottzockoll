@@ -17,6 +17,7 @@ export default $config({
     return {
       MyBucket: storage.bucket.name,
       MainSite: sites.mainSite.url,
+      AGoofeMurmurSite: sites.aGoofeMurmurSite.url,
     };
   },
 });
