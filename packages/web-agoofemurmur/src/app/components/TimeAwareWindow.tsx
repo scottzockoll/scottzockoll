@@ -41,22 +41,16 @@ export default function TimeAwareWindow({
           const timings = [];
 
           for (let i = 0; i < count; i++) {
-            const duration = 0.3 + Math.random() * 0.4; // Animation duration: 0.3-0.7 seconds
+            const duration = 0.5 + Math.random() * 1; // Animation duration: 0.5-1.5 seconds
 
-            // Generate random intervals between animations (0.5-1.5 seconds)
-            const intervals = [];
-            for (let j = 0; j < 10; j++) { // Generate 10 random intervals
-              intervals.push(0.5 + Math.random() * 1); // 0.5-1.5 seconds between animations
-            }
-
-            // Create begin times: duration + interval, duration + interval, etc.
+            // Generate many random begin times over a long period
             const beginTimes = [];
-            let currentTime = Math.random() * 1.5; // Initial random delay 0-1.5s
-            beginTimes.push(currentTime);
+            let currentTime = Math.random() * 5; // Initial random delay 0-5s
 
-            for (let k = 0; k < intervals.length; k++) {
-              currentTime += duration + intervals[k];
+            // Generate 50 random intervals to cover a long time period
+            for (let j = 0; j < 50; j++) {
               beginTimes.push(currentTime);
+              currentTime += duration + 1 + Math.random() * 4; // 1-5s between animations
             }
 
             timings.push({
