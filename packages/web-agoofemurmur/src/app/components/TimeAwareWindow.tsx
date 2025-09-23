@@ -36,66 +36,65 @@ function TimeAwareWindow({
         // Add individual SVG animateTransform elements to each path
         let styledSvg = svgText;
 
-        // Generate random timing sequences for each raindrop
-        const generateRandomTimings = (count: number) => {
-          const timings = [];
+        // Generate CSS animations for infinite rain
+        const generateRainAnimations = (count: number) => {
+          let cssAnimations = '';
 
           for (let i = 0; i < count; i++) {
-            const duration = 0.5 + Math.random() * 1; // Animation duration: 0.5-1.5 seconds
+            const duration = (3 + Math.random() * 7).toFixed(2); // 3-10s total cycle
+            const delay = (Math.random() * 10).toFixed(2); // 0-10s initial delay
+            const animationDuration = (0.5 + Math.random() * 1).toFixed(2); // 0.5-1.5s drop duration
 
-            // Generate many random begin times over a long period
-            const beginTimes = [];
-            let currentTime = Math.random() * 5; // Initial random delay 0-5s
+            cssAnimations += `
+              .rain path:nth-child(${i + 1}) {
+                animation:
+                  raindrop-${i} ${duration}s infinite,
+                  rainopacity-${i} ${duration}s infinite;
+                animation-delay: ${delay}s;
+              }
 
-            // Generate 50 random intervals to cover a long time period
-            for (let j = 0; j < 50; j++) {
-              beginTimes.push(currentTime);
-              currentTime += duration + 1 + Math.random() * 4; // 1-5s between animations
-            }
+              @keyframes raindrop-${i} {
+                0%, ${(parseFloat(animationDuration) / parseFloat(duration) * 100).toFixed(1)}% {
+                  transform: translate(0, 0);
+                }
+                ${(parseFloat(animationDuration) / parseFloat(duration) * 100).toFixed(1)}% {
+                  transform: translate(8px, 15px);
+                }
+                100% {
+                  transform: translate(0, 0);
+                }
+              }
 
-            timings.push({
-              duration,
-              beginTimes: beginTimes.map(t => `${t.toFixed(2)}s`).join('; ')
-            });
+              @keyframes rainopacity-${i} {
+                0% { opacity: 0; }
+                ${(0.2 * parseFloat(animationDuration) / parseFloat(duration) * 100).toFixed(1)}% { opacity: 0.8; }
+                ${(0.6 * parseFloat(animationDuration) / parseFloat(duration) * 100).toFixed(1)}% { opacity: 0.8; }
+                ${(parseFloat(animationDuration) / parseFloat(duration) * 100).toFixed(1)}% { opacity: 0; }
+                100% { opacity: 0; }
+              }
+            `;
           }
 
-          return timings;
+          return cssAnimations;
         };
 
-        const timings = generateRandomTimings(23);
-
-        // Find all path elements in the rain group and add individual animations
-          // @ts-expect-error this is fine
-          const rainGroupMatch = styledSvg.match(/<g class="rain"[^>]*>(.*?)<\/g>/s);
+        // Find rain group and add CSS animations
+        // @ts-expect-error this is fine
+        const rainGroupMatch = styledSvg.match(/<g class="rain"[^>]*>(.*?)<\/g>/s);
         if (rainGroupMatch) {
-          let rainContent = rainGroupMatch[1];
+          const rainContent = rainGroupMatch[1];
           const pathMatches = Array.from(rainContent.matchAll(/<path[^>]*\/>/g));
+          const rainAnimations = generateRainAnimations(pathMatches.length);
 
-          pathMatches.forEach((pathMatch, index) => {
-            const timing = timings[index] || { duration: 0.8, beginTimes: '0s' };
-            const originalPath = pathMatch[0];
-            const animatedPath = originalPath.replace('/>',
-              `>
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  values="0,0; 8,15"
-                  dur="${timing.duration}s"
-                  begin="${timing.beginTimes}"
-                  fill="freeze"/>
-                <animate
-                  attributeName="opacity"
-                  values="0; 0.8; 0.8; 0"
-                  keyTimes="0; 0.2; 0.6; 1"
-                  dur="${timing.duration}s"
-                  begin="${timing.beginTimes}"
-                  fill="freeze"/>
-              </path>`
-            );
-            rainContent = rainContent.replace(originalPath, animatedPath);
-          });
-
-          styledSvg = styledSvg.replace(rainGroupMatch[0], `<g class="rain">${rainContent}</g>`);
+          // Add the CSS animations to the style block
+            // @ts-expect-error this is fine
+          const existingStyleMatch = styledSvg.match(/<style>(.*?)<\/style>/s);
+          if (existingStyleMatch) {
+            const newStyles = existingStyleMatch[1] + rainAnimations;
+            styledSvg = styledSvg.replace(existingStyleMatch[0], `<style>${newStyles}</style>`);
+          } else {
+            styledSvg = styledSvg.replace('<svg', `<style>${rainAnimations}</style><svg`);
+          }
         }
 
         // Add CSS to control rain visibility - hide rain group by default

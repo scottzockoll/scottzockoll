@@ -30,15 +30,8 @@ export default function RainAudio({
       console.log("Started loading rain audio in background");
     };
 
-    const handleEnded = () => {
-      // Seamless loop by immediately restarting
-      audio.currentTime = 0;
-      audio.play().catch(console.error);
-    };
-
     audio.addEventListener('canplaythrough', handleCanPlayThrough);
     audio.addEventListener('loadstart', handleLoadStart);
-    audio.addEventListener('ended', handleEnded);
 
     // Start background download after a short delay to let UI render first
     const startBackgroundLoad = setTimeout(() => {
@@ -49,7 +42,6 @@ export default function RainAudio({
       clearTimeout(startBackgroundLoad);
       audio.removeEventListener('canplaythrough', handleCanPlayThrough);
       audio.removeEventListener('loadstart', handleLoadStart);
-      audio.removeEventListener('ended', handleEnded);
     };
   }, []);
 
