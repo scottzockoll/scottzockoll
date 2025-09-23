@@ -33,9 +33,7 @@ export default function RainAudio({
     const handleEnded = () => {
       // Seamless loop by immediately restarting
       audio.currentTime = 0;
-      if (isPlaying) {
-        audio.play().catch(console.error);
-      }
+      audio.play().catch(console.error);
     };
 
     audio.addEventListener('canplaythrough', handleCanPlayThrough);
@@ -72,6 +70,7 @@ export default function RainAudio({
     <audio
       ref={audioRef}
       preload="none"
+      loop
       style={{ display: 'none' }}
     >
       <source src="/rain_2s_crossfade.mp3" type="audio/mpeg" />
