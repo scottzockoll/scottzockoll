@@ -14,8 +14,22 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <div className={styles.scene}>
-        <TimeAwareWindow width={475} height={544} className={styles.window} showRain={isRainPlaying} />
-        <TimeAwareGoofe width={1200} height={900} className={styles.goofe} animate animationSpeed={6} forceSleepy={false} />
+        <TimeAwareWindow
+          width={475}
+          height={544}
+          className={styles.window}
+          showRain={isRainPlaying}
+          timeOverride={undefined}
+        />
+        <TimeAwareGoofe
+          width={1200}
+          height={900}
+          className={styles.goofe}
+          animate
+          animationSpeed={6}
+          forceSleepy={false}
+          timeOverride={undefined}
+        />
         <RainAudio isPlaying={isRainPlaying} volume={volume} />
 
         <div className={styles.rainControls}>

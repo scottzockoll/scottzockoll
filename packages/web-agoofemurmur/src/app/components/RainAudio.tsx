@@ -12,8 +12,12 @@ export default function RainAudio({
   volume = 0.5
 }: RainAudioProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const isPlayingRef = useRef(isPlaying);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Keep ref in sync with prop
+  isPlayingRef.current = isPlaying;
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -30,8 +34,18 @@ export default function RainAudio({
       console.log("Started loading rain audio in background");
     };
 
+    const handleEnded = () => {
+      // Backup looping mechanism in case native loop fails
+      console.log("Audio ended, restarting for seamless loop");
+      audio.currentTime = 0;
+      if (isPlayingRef.current) {
+        audio.play().catch(console.error);
+      }
+    };
+
     audio.addEventListener('canplaythrough', handleCanPlayThrough);
     audio.addEventListener('loadstart', handleLoadStart);
+    audio.addEventListener('ended', handleEnded);
 
     // Start background download after a short delay to let UI render first
     const startBackgroundLoad = setTimeout(() => {
@@ -42,6 +56,7 @@ export default function RainAudio({
       clearTimeout(startBackgroundLoad);
       audio.removeEventListener('canplaythrough', handleCanPlayThrough);
       audio.removeEventListener('loadstart', handleLoadStart);
+      audio.removeEventListener('ended', handleEnded);
     };
   }, []);
 

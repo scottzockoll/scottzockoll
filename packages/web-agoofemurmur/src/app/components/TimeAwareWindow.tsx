@@ -9,6 +9,7 @@ interface TimeAwareWindowProps {
   alt?: string;
   className?: string;
   showRain?: boolean;
+  timeOverride?: 'day' | 'night';
 }
 
 function TimeAwareWindow({
@@ -16,7 +17,8 @@ function TimeAwareWindow({
   height = 200,
   alt = "Window",
   className,
-  showRain = false
+  showRain = false,
+  timeOverride
 }: TimeAwareWindowProps) {
   const [windowType, setWindowType] = useState("morning");
   const [mounted, setMounted] = useState(false);
@@ -24,10 +26,21 @@ function TimeAwareWindow({
 
   useEffect(() => {
     setMounted(true);
-    setWindowType("morning");
 
-    // Fetch the SVG content
-    fetch("/morning-window.svg")
+    // Determine time of day
+    let isNight: boolean;
+    if (timeOverride) {
+      isNight = timeOverride === 'night';
+    } else {
+      const currentHour = new Date().getHours();
+      isNight = currentHour >= 20 || currentHour < 4; // 8pm to 4am
+    }
+    const timeOfDay = isNight ? "night" : "morning";
+    setWindowType(timeOfDay);
+
+    // Fetch the appropriate SVG content
+    const svgFile = isNight ? "/window-night.svg" : "/morning-window.svg";
+    fetch(svgFile)
       .then(response => response.text())
       .then(svgText => {
         console.log("SVG loaded, length:", svgText.length);
@@ -78,6 +91,7 @@ function TimeAwareWindow({
           return cssAnimations;
         };
 
+
         // Find rain group and add CSS animations
         // @ts-expect-error this is fine
         const rainGroupMatch = styledSvg.match(/<g class="rain"[^>]*>(.*?)<\/g>/s);
@@ -87,7 +101,6 @@ function TimeAwareWindow({
           const rainAnimations = generateRainAnimations(pathMatches.length);
 
           // Add the CSS animations to the style block
-            // @ts-expect-error this is fine
           const existingStyleMatch = styledSvg.match(/<style>(.*?)<\/style>/s);
           if (existingStyleMatch) {
             const newStyles = existingStyleMatch[1] + rainAnimations;
@@ -118,7 +131,7 @@ function TimeAwareWindow({
       .catch(error => {
         console.error("Failed to load SVG:", error);
       });
-  }, []);
+  }, [timeOverride]);
 
   useEffect(() => {
     if (svgContent) {
