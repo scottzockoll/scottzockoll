@@ -101,6 +101,7 @@ function TimeAwareWindow({
           const rainAnimations = generateRainAnimations(pathMatches.length);
 
           // Add the CSS animations to the style block
+          // @ts-expect-error this is fine
           const existingStyleMatch = styledSvg.match(/<style>(.*?)<\/style>/s);
           if (existingStyleMatch) {
             const newStyles = existingStyleMatch[1] + rainAnimations;
